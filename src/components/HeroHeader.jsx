@@ -5,13 +5,12 @@ import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-
 const HeroHeader = () => {
     const [currentIndex, setCurrentIndex] = useState(1)
     const [hasClicked, setHasClicked] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
     const [loadedVideo, setLoadedVideo] = useState(0)
-    const totalVideos = 5;
+    const totalVideos = 4;
 
     const nextVideoRef = useRef(null)
     useEffect(() => {
@@ -32,7 +31,7 @@ const HeroHeader = () => {
                 height: '100%',
                 duration: 0.7,
                 ease: 'power1.inOut',
-                onStart: nextVideoRef.current.play(),
+                //onStart: nextVideoRef.current.play(),
             })
 
             gsap.from('#current-video', {
@@ -46,8 +45,7 @@ const HeroHeader = () => {
 
 
 
-
-    const getVideoSrc = (index) => `/videos/hero-${index}.mp4`
+    const getVideoSrc = (index) => `/img/hero-${index}.webp`
     const handleNextVideoIndex = (currentIndex % totalVideos) + 1
     const handleMiniVideoClick = () => {
         setCurrentIndex(handleNextVideoIndex)
@@ -93,7 +91,7 @@ const HeroHeader = () => {
                 <div>
                     <div className='mask-clip-path absolute-center absolute z-50 size-64 cursor-pointer overflow-hidden rounded-lg'>
                         <div onClick={handleMiniVideoClick} className='origin-center scale-50 opacity-0 transition-all duration-500 hover:opacity-100 hover:scale-150'>
-                            <video
+                            {/* <video
                                 loop
                                 muted
                                 onLoadedData={handleVideoLoad}
@@ -101,10 +99,23 @@ const HeroHeader = () => {
                                 id='current-video'
                                 className='size-64 origin-center rounded-lg scale-150 object-cover object-center'
                                 src={getVideoSrc(handleNextVideoIndex)}
-                            />
+                            /> */}
+                            <img
+                                ref={nextVideoRef}
+                                id='current-video'
+                                className='size-64 origin-center rounded-lg scale-150 object-cover object-center'
+                                src={getVideoSrc(handleNextVideoIndex)} />
                         </div>
                     </div>
-                    <video
+                    <img id='next-video'
+                        className='absolute-center invisible absolute z-20 size-64 object-cover object-center'
+                        onLoadedData={handleVideoLoad}
+                        src={getVideoSrc(currentIndex)} />
+                    <img onLoadedData={handleVideoLoad}
+                        src={getVideoSrc(currentIndex === totalVideos - 1 ? 1 : currentIndex)}
+                        className='absolute-center absolute top-0 left-0 size-full object-cover object-center'
+                    />
+                    {/* <video
                         loop
                         muted
                         autoPlay
@@ -112,8 +123,8 @@ const HeroHeader = () => {
                         className='absolute-center invisible absolute z-20 size-64 object-cover object-center'
                         onLoadedData={handleVideoLoad}
                         src={getVideoSrc(currentIndex)}
-                    />
-
+                    /> */}
+                    {/* 
                     <video
                         loop
                         muted
@@ -121,7 +132,7 @@ const HeroHeader = () => {
                         onLoadedData={handleVideoLoad}
                         src={getVideoSrc(currentIndex === totalVideos - 1 ? 1 : currentIndex)}
                         className='absolute-center absolute top-0 left-0 size-full object-cover object-center'
-                    />
+                    /> */}
                 </div>
                 <h1 className='special-font hero-heading absolute z-40 bottom-0 right-0 text-blue-100'>
                     g<b>a</b>ming

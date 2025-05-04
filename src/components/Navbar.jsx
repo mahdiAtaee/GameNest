@@ -7,7 +7,7 @@ import gsap from 'gsap'
 const navItems = ['Home', 'Products', 'About', 'Contact']
 
 const Navbar = () => {
-    const [isAudioPlaying, setIsAudioPlaying] = useState(false)
+    const [isAudioPlaying, setIsAudioPlaying] = useState(true)
     const [isActiveIndicator, setIsActiveIndicator] = useState(false)
     const [isNavVisible, setIsNavVisible] = useState(true)
     const [lastScrollY, setLastScrollY] = useState(0)
@@ -83,7 +83,7 @@ const Navbar = () => {
                             ))}
                         </div>
                         <button className='ml-10 flex items-center space-x-0.5' onClick={toggleAudioIndicator}>
-                            <audio className='hidden' src='/audio/loop.mp3' loop ref={audioElRef} />
+                            <audio className='hidden' src='/audio/loop.mp3' autoPlay loop ref={audioElRef} />
                             {[1, 2, 3, 4].map(line => (
                                 <div className={`indicator-line ${isActiveIndicator ? 'active' : ''}`} style={{ animationDelay: `${line * 0.1}s` }} />
                             ))}

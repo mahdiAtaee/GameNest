@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import AnimatedTitle from '../partials/AnimatedTitle'
 import Button from '../partials/Button'
 import gsap from 'gsap'
-
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const Story = () => {
     const frameRef = useRef('null')
@@ -54,13 +54,13 @@ const Story = () => {
                         <div className='story-img-mask'>
                             <div className='story-img-content'>
                                 <img
-                                    ref={frameRef}
-                                    src='/img/world-2.jpg'
-                                    onMouseEnter={handleMouseLeave}
-                                    onMouseLeave={handleMouseLeave}
-                                    onMouseUp={handleMouseLeave}
-                                    onMouseMove={handleMouseMove}
-                                />
+                                        ref={frameRef}
+                                        src='/img/world-2.webp'
+                                        onMouseEnter={handleMouseLeave}
+                                        onMouseLeave={handleMouseLeave}
+                                        onMouseUp={handleMouseLeave}
+                                        onMouseMove={handleMouseMove}
+                                    />
                             </div>
                         </div>
                     </div>
